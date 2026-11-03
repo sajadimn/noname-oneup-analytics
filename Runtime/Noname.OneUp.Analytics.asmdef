@@ -1,0 +1,34 @@
+{
+    "name": "Noname.OneUp.Analytics",
+    "rootNamespace": "",
+    "references": [
+        "Noname.OneUp.Singleton",
+        "GameAnalyticsSDK",
+        "AppMetrica"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "io.appmetrica.analytics",
+            "expression": "",
+            "define": "ONEUP_APPMETRICA"
+        },
+        {
+            "name": "com.gameanalytics.sdk",
+            "expression": "",
+            "define": "ONEUP_GAMEANALYTICS"
+        },
+        {
+            "name": "com.google.firebase.app",
+            "expression": "",
+            "define": "ONEUP_FIREBASE"
+        }
+    ],
+    "noEngineReferences": false
+}
