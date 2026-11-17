@@ -324,4 +324,16 @@ public class AnalyticsManager : MonoSingleton<AnalyticsManager>
             analytics.Find(x => x.type == type)?.analytic.SendResourceEvent(status, currency, amount, itemType,
                 itemId, customFields, mergeFields);
     }
+
+    public void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement,
+        List<AnalyticType> _analyticTypes = null)
+    {
+        List<AnalyticType> types = _analyticTypes != null && _analyticTypes.Count > 0 ? _analyticTypes : analyticTypes;
+        if (types == null || types.Count == 0)
+            return;
+
+        foreach (var type in types)
+            analytics.Find(x => x.type == type)?.analytic
+                .SendAdEvent(adAction, adType, adSdkName, adPlacement);
+    }
 }

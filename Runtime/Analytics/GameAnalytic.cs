@@ -190,6 +190,17 @@ public class GameAnalytic : BaseAnalytic
             $"Send Progression Event : {progressionStatus} Progression: {progression01} Progression: {progression02} Progression: {progression03} Score: {score}");
     }
 
+    public override void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement)
+    {
+        if (!gameAnalyticsInitialized)
+            return;
+
+        GAAdAction gaAdAction = (GAAdAction)((int)adAction);
+        GAAdType gaAdType = (GAAdType)((int)adType);
+        GameAnalytics.NewAdEvent(gaAdAction, gaAdType, adSdkName, adPlacement);
+        DebugLog($"Send Ad Event : {gaAdAction} AdType: {gaAdType} AdSdkName: {adSdkName} Placement: {adPlacement}");
+    }
+
     protected override void DebugLog(string _logText)
     {
         Debug.Log("Game Analytics Event: " + _logText);
