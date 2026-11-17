@@ -258,6 +258,18 @@ public class AppMetricaAnalytic : BaseAnalytic
             $"Send Progression Event : {status} Progression: {progression01} Progression: {progression02} Progression: {progression03} Score: {score}");
     }
 
+    public override void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement)
+    {
+        if (!appMetricaAnalyticInitialized)
+            return;
+
+        string eventParameter =
+            $"{{\"AdAction\":\"{adAction}\",\"AdType\":\"{adType}\",\"AdSdkName\":\"{adSdkName}\",\"AdPlacement\":\"{adPlacement}\"}}";
+        AppMetrica.ReportEvent("AdEvent", eventParameter);
+        AppMetrica.SendEventsBuffer();
+        DebugLog($"Send Ad Event : {adAction} AdType: {adType} AdSdkName: {adSdkName} Placement: {adPlacement}");
+    }
+
     public void GetDeviceId()
     {
         var keys = new string[]
