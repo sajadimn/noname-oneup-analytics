@@ -20,7 +20,7 @@ public abstract class BaseAnalytic
     public abstract void SendProgressionEvent(ProgressionStatus status, string progression01, string progression02, string progression03, int score);
     public abstract void SendResourceEvent(ResourceFlowType status, string currency, float amount, string itemType, string itemId);
     public abstract void SendResourceEvent(ResourceFlowType status, string currency, float amount, string itemType, string itemId, IDictionary<string, object> customFields, bool mergeFields = false);
-    public abstract void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement);
+    public abstract void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement, AdError adError);
     public virtual void ResetAnalyticsData()
     {
     }
