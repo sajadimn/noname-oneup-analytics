@@ -328,12 +328,18 @@ public class AnalyticsManager : MonoSingleton<AnalyticsManager>
     public void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement,
         List<AnalyticType> _analyticTypes = null)
     {
+        SendAdEvent(adAction, adType, adSdkName, adPlacement, AdError.Undefined, _analyticTypes);
+    }
+
+    public void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement,
+        AdError adError, List<AnalyticType> _analyticTypes = null)
+    {
         List<AnalyticType> types = _analyticTypes != null && _analyticTypes.Count > 0 ? _analyticTypes : analyticTypes;
         if (types == null || types.Count == 0)
             return;
 
         foreach (var type in types)
             analytics.Find(x => x.type == type)?.analytic
-                .SendAdEvent(adAction, adType, adSdkName, adPlacement);
+                .SendAdEvent(adAction, adType, adSdkName, adPlacement, adError);
     }
 }

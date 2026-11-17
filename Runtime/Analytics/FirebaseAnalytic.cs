@@ -241,7 +241,8 @@ public class FirebaseAnalytic : BaseAnalytic
         SendAnalyticEvent(result);
     }
 
-    public override void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement)
+    public override void SendAdEvent(AdAction adAction, AdType adType, string adSdkName, string adPlacement,
+        AdError adError)
     {
         if (!firebaseInitialized)
             return;
@@ -251,10 +252,12 @@ public class FirebaseAnalytic : BaseAnalytic
             new Parameter("AdAction", adAction.ToString()),
             new Parameter("AdType", adType.ToString()),
             new Parameter("AdSdkName", adSdkName),
-            new Parameter("AdPlacement", adPlacement)
+            new Parameter("AdPlacement", adPlacement),
+            new Parameter("AdError", adError.ToString())
         };
         FirebaseAnalytics.LogEvent("AdEvent", parameters);
-        DebugLog($"Send Ad Event : {adAction} AdType: {adType} AdSdkName: {adSdkName} Placement: {adPlacement}");
+        DebugLog(
+            $"Send Ad Event : {adAction} AdType: {adType} AdSdkName: {adSdkName} Placement: {adPlacement} AdError: {adError}");
     }
 
     public override void ResetAnalyticsData()
